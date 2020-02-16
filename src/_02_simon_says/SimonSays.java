@@ -34,39 +34,73 @@ JFrame frame = new JFrame();
 	public void run() {
 		// 2. Add the four images that match keyboard keys like this:
 		 images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
-		 images.put(new Integer(KeyEvent.VK_UP), "down.jpg");
-		 images.put(new Integer(KeyEvent.VK_UP), "left.jpg");
-		 images.put(new Integer(KeyEvent.VK_UP), "right.jpg");
+		 images.put(new Integer(KeyEvent.VK_DOWN), "down.jpg");
+		 images.put(new Integer(KeyEvent.VK_LEFT), "left.jpg");
+		 images.put(new Integer(KeyEvent.VK_RIGHT), "right.jpg");
 
 		// 3. Use a JOptionPane to tell the user the rules: "Press the matching
 		// key when
 		// 'Simon says' otherwise press a different key"
 		 JOptionPane.showMessageDialog(null, "Press the matching" 
-		 		+ "button when simon says, if he aint say simno, u a press a another a button a!");
+		 		+ "button when simon says, if he doesn't say simon, don't press it");
 		// 4. Call the showImage method to show an image
-
+		 showImage();
 	}
 
 	public void keyPressed(KeyEvent e) {
 		// 15. Make a points variable to track the score.
 		int points = 0;
+		int tries=0;
 		// 16. If the keyCode matches the imageIndex and "Simon says"
-		
+		if(simonSays&&e.getKeyCode()==imageIndex) {
+		points+=1;	
+		showImage();
+		speak("you are correct");
+		}
+		else {
+			speak("you are wrong");
+			tries+=1;
+			if(tries==3) {
+				System.out.println(points);
+				System.exit(0);
+				frame.dispose();
+			}
+		}
 		// 17. Increase the value of score
 
 		// 18. Use the speak method to tell the user they were correct
-
+		
 		// 19. If the keyCode doesn't match the imageIndex and "Simon didn't
 		// say..."
-
+		if(simonSays==false&&e.getKeyCode()!=imageIndex) {
+		points+=1;	
+		speak("you are correct");
+		showImage();
+		}
+		else {
+			speak("you are wrong");
+			tries+=1;
+			if(tries==3) {
+				System.out.println(points);
+				System.exit(0);
+				frame.dispose();
+			}
+		}
 		// 20. Increase the value of score
-
+		
 		// 21. Use the speak method to tell the user they were correct
-
+		if(simonSays==true&&e.getKeyCode()!=imageIndex) {
+		tries+=1;	
+		speak("you are wrong");
+		if(tries==3) {
+			System.out.println(points);
+			System.exit(0);
+			frame.dispose();
+					}}
 		// 22. Increment tries by 1
-
+		
 		// 25. If tries is greater than 9 (or however many you want)...
-
+		
 		// 26. Tell the user their score
 
 		// 27. Exit the program
@@ -106,7 +140,7 @@ JFrame frame = new JFrame();
 		
 		else {
 		simonSays=false;
-			speak("peasant, press this key");
+			speak("press this key");
 		}
 		// 14. Above, set the value of simonSays to true/false appropriately
 
