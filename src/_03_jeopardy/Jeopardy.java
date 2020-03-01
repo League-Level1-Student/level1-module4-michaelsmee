@@ -40,7 +40,7 @@ public class Jeopardy implements ActionListener {
 	private JLabel scoreBox = new JLabel("0");
 	private int buttonCount = 0;
 	private AudioClip sound;
-
+	String tyler;
 
 
 	public void run() {
@@ -76,8 +76,8 @@ public class Jeopardy implements ActionListener {
 		// 10. Add the secondButton to the quizPanel
 		quizPanel.add(secondButton);
 		// 11. Add action listeners to the buttons (2 lines of code)
-		firstButton.addActionListener(null);
-		secondButton.addActionListener(null);
+		firstButton.addActionListener(this);
+		secondButton.addActionListener(this);
 		// 12. Write the code to complete the actionPerformed() method below
 		
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
@@ -111,11 +111,16 @@ public class Jeopardy implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		// Remove this temporary message after testing:
-		JOptionPane.showMessageDialog(null, "pressed " + ((JButton) e.getSource()).getText() + " button");
+		//JOptionPane.showMessageDialog(null, "pressed " + ((JButton) e.getSource()).getText() + " button");
 
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
-
+		if(firstButton==e.getSource()) {
+			askQuestion("hi?", "bye?", 200);
+		}
+		if(secondButton==e.getSource()) {
+			askQuestion("tyler", "NOBODY CARES", 1000000);
+		}
 			// Call the askQuestion() method
  
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
@@ -129,11 +134,51 @@ public class Jeopardy implements ActionListener {
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
-		
+		playJeopardyTheme();
+		if(question.equals("hi?")) {
+			tyler=JOptionPane.showInputDialog("hi?");
+			
+			if(tyler.equals("bye?")) { 
+				sound.stop();
+				score+=200;
+				JOptionPane.showMessageDialog(null, "u right");}
+			
+			
+			else {
+				sound.stop();
+				score-=200;
+				JOptionPane.showMessageDialog(null, "NOBODY CARES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			}
+			updateScore();
+		}
+
+			if(question.equals("tyler")) {
+				tyler=JOptionPane.showInputDialog("tyler?");
+			
+			if(tyler.equals("some 21 year old milenial boomer who has only one video and has instagram and basically does nothing else other than that but while being a coder at the same time, he has become something else, a memer above all who can get 2 subscribers by himself in only 1 minute which is very cool. I would also say that tyler memes on all of us with hid hidden truch")) {
+				sound.stop();
+				score+=1000000;
+				JOptionPane.showMessageDialog(null, "yay, u must hav eread the code, awesome");
+			}
+			
+			else if(tyler.equals("tyler's old gf took a RIP.... NOBODY KNOWS")) {
+				sound.stop();
+				score+=1000000000;
+				JOptionPane.showMessageDialog(null, "u literal god");		
+			}
+			
+			else {
+				sound.stop();
+				score-=999999999;
+				JOptionPane.showMessageDialog(null, "wow, how did u fail TYLER, u.......null ");
+			}
+			updateScore();
+			}
+			
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
 		
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
-		JOptionPane.showMessageDialog(null, "this is where the question will be asked");
+		//JOptionPane.showMessageDialog(null, "this is where the question will be asked");
 		
 		// Stop the theme music when they have entered their response. Hint: use the sound variable 
 		
@@ -144,7 +189,7 @@ public class Jeopardy implements ActionListener {
 			// Pop up a message to tell the user they were correct
 
 		// Otherwise
-
+			
 			// Decrement the score by the prizeMoney
 
 			// Pop up a message to tell the user they were wrong and give them the correct answer
