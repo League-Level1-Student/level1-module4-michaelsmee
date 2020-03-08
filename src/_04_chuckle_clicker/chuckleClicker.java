@@ -15,6 +15,8 @@ public class chuckleClicker implements ActionListener {
 	JButton button2 = new JButton();
 	public static void main(String[] args) {
 	
+		new chuckleClicker().makeButtons();
+			
 		
 		
 		
@@ -24,10 +26,13 @@ public class chuckleClicker implements ActionListener {
 				frame.setVisible(true);
 		
 		frame.add(panel);
-		frame.add(button);
-		frame.add(button2);
+		panel.add(button);
+		panel.add(button2);
 		button.addActionListener(this);
 		button2.addActionListener(this);
+		button2.setText("poo");
+		button.setText("pee");
+		frame.pack();
 		
 	}
 	@Override
@@ -39,7 +44,7 @@ public class chuckleClicker implements ActionListener {
 		}
 		
 		if(button2==e.getSource()) {
-			JOptionPane.showMessageDialog(null, "hi");
+			JOptionPane.showMessageDialog(null, "tyler pooped");
 		}
 	}
 	
