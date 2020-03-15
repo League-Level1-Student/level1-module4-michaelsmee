@@ -18,6 +18,7 @@ public class TypingTutor implements KeyListener {
 	
 char currentLetter;
 void Tyler() {
+
 JFrame frame = new JFrame();
 frame.addKeyListener(this);
 currentLetter = generateRandomLetter();
@@ -27,9 +28,10 @@ frame.add(panel);
 frame.setVisible(true);
 label.setFont(label.getFont().deriveFont(28.0f));
 label.setHorizontalAlignment(JLabel.CENTER);
-
+label.setText(generateRandomLetter()+"");
 
 }
+
 
 
 
@@ -59,9 +61,18 @@ public void keyTyped(KeyEvent e) {
 @Override
 public void keyPressed(KeyEvent e) {
 	// TODO Auto-generated method stub
-
-	
+	char x=e.getKeyChar();
+	char y=generateRandomLetter();
 	System.out.println(e.getKeyChar());
+	label.setText(y+"");
+	if(x==y) {
+	System.out.println("correct");	
+	
+	}
+
+	else {
+		System.out.println("u dumbo");
+	}
 }
 
 
