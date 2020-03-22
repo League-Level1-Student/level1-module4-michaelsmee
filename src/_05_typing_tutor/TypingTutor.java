@@ -1,5 +1,7 @@
 package _05_typing_tutor;
 
+import java.awt.Color;
+import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
@@ -11,7 +13,7 @@ import javax.swing.JPanel;
 
 public class TypingTutor implements KeyListener {
 	JLabel label = new JLabel();
-
+	JFrame frame = new JFrame();
 	public static void main(String[] args) {
 		new TypingTutor().Tyler();
 	}
@@ -19,16 +21,16 @@ public class TypingTutor implements KeyListener {
 char currentLetter;
 void Tyler() {
 
-JFrame frame = new JFrame();
+
 frame.addKeyListener(this);
 currentLetter = generateRandomLetter();
-JPanel panel = new JPanel();
-panel.add(label);
-frame.add(panel);
+
+
+frame.add(label);
 frame.setVisible(true);
 label.setFont(label.getFont().deriveFont(28.0f));
 label.setHorizontalAlignment(JLabel.CENTER);
-label.setText(generateRandomLetter()+"");
+label.setText(currentLetter+"");
 
 }
 
@@ -62,17 +64,21 @@ public void keyTyped(KeyEvent e) {
 public void keyPressed(KeyEvent e) {
 	// TODO Auto-generated method stub
 	char x=e.getKeyChar();
-	char y=generateRandomLetter();
-	System.out.println(e.getKeyChar());
-	label.setText(y+"");
-	if(x==y) {
-	System.out.println("correct");	
-	
-	}
 
+	System.out.println(e.getKeyChar());
+	System.out.println(currentLetter);
+	if(x==currentLetter) {
+	System.out.println("correct");	
+	label.setBackground(Color.green);
+	}
 	else {
 		System.out.println("u dumbo");
+	label.setBackground(Color.red);
 	}
+	currentLetter = generateRandomLetter();
+	label.setFont(label.getFont().deriveFont(28.0f));
+	label.setHorizontalAlignment(JLabel.CENTER);
+	label.setText(currentLetter+"");
 }
 
 
@@ -82,8 +88,7 @@ public void keyPressed(KeyEvent e) {
 @Override
 public void keyReleased(KeyEvent e) {
 	// TODO Auto-generated method stub
-	currentLetter=' ';
-	label.setText(currentLetter+"");
+
 	
 	}
 }
