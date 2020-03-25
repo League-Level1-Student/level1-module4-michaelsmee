@@ -24,23 +24,29 @@ String a;
 String o;
 String p;
 String z;
-	calculator() throws Exception {
+
+public static void main(String[] args) {
 	
+}	
+
+		public void run() {
 	frame.setVisible(true);
 	frame.add(panel);
 	
 	
-		frame.add(button);
-		frame.add(button1);
-		frame.add(button2);
-		frame.add(button3);
+		panel.add(button);
+		panel.add(button1);
+		panel.add(button2);
+		panel.add(button3);
+		frame.pack();
 button.setText("add");
 button1.setText("subtract");
 button2.setText("multiply");
 button3.setText("divide");
 frame.addMouseListener(this);
-}	
-	
+frame.pack();
+		}	
+
 	void add() {
 		int a=i+m;
 		System.out.println(a);
