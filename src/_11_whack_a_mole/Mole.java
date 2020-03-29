@@ -29,6 +29,7 @@ public class Mole implements MouseListener, ActionListener {
 		
 		if(x==i) {
 			button.setText("Mole");
+			System.out.println(i);
 		}
 		panel.add(button);
 		}
@@ -38,7 +39,16 @@ public class Mole implements MouseListener, ActionListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		JButton buttonClicked = (JButton) e.getSource();
+		System.out.println(buttonClicked.getText());
+		if(buttonClicked.getText().equals("Mole")){
+			
+			System.out.println("correct");
+		}
+		else {
 		
+			System.out.println("wrong");
+		}
 	}
 
 	@Override
